@@ -1,8 +1,9 @@
 import { Geist_Mono, Manrope } from "next/font/google"
-
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 import { cn } from "@/lib/utils"
+import Header from "@/components/header"
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -27,7 +28,17 @@ export default function RootLayout({
         manrope.variable
       )}
     >
-      <body>{children} </body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
